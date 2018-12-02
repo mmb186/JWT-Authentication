@@ -14,8 +14,7 @@ mongoose.connect('mongodb://localhost/dev_video_sync_player',
     if (err) throw err;
   }).then(() => {
   logger('mongoose Ready state: ', mongoose.connection.readyState);
-})
-
+});
 
 
 // APP Setup
