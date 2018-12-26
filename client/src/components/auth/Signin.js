@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux'
 import * as actions from '../../actions';
 
-class Signup extends Component {
+class SignIn extends Component {
 
   onSubmit = (formProps) => {
     // navigate user after
-    this.props.signup(formProps, () => {
+    this.props.signin(formProps, () => {
       this.props.history.push('/feature');
     });
   }
@@ -16,36 +16,20 @@ class Signup extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onSubmit )}>
-        <fieldset>
-          <label>Username</label>
-          <Field
-            name='username'
-            type='text'
-            component='input'
-            autoComplete='none'
-          />
-        </fieldset>
+      <form onSubmit={handleSubmit(this.onSubmit)}>
         <fieldset>
           <label>Email</label>
           <Field
-            name='email'
-            type='text'
-            autoComplete='none'
-            component='input'
+            name='email' type='text' autoComplete='none' component='input'
           />
         </fieldset>
         <fieldset>
           <label>Password</label>
-          <Field 
-            name='password'
-            type='password'
-            component='input'
-            autoComplete='none'
+          <Field name='password' type='password' component='input' autoComplete='none'
           />
         </fieldset>
         <div>{this.props.errorMessage}</div>
-        <button>Submit</button>
+        <button>Sign In</button>
       </form>
     );
   }
@@ -58,5 +42,5 @@ function maptStateToProps(state) {
 
 export default compose(
   connect(maptStateToProps, actions),
-  reduxForm({form: 'signup'})
-)(Signup)
+  reduxForm({form: 'signin'})
+)(SignIn)

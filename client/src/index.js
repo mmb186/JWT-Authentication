@@ -8,11 +8,17 @@ import reduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import App from './components/App';
 import Welcome from './components/Welcome';
-import Signup from './components/auth/Signup';
+import SignUp from './components/auth/Signup';
+import SignOut from './components/auth/SignOut'
+import SignIn from './components/auth/Signin';
+import Feature from './components/Feature';
 
 
 const store = createStore(
-  reducers, {}, applyMiddleware(reduxThunk)
+  reducers, 
+  {
+    auth: {authenticated: localStorage.getItem('token')}
+  }, applyMiddleware(reduxThunk)
 );
 
 
@@ -21,7 +27,10 @@ ReactDOM.render(
     <BrowserRouter>
       <App>
         <Route path='/' exact component={Welcome} />
-        <Route path='/signup' component={Signup} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/signout' component={SignOut} />
+        <Route path='/signin' component={SignIn} />
+        <Route path='/feature' component={Feature} />
       </App>
     </BrowserRouter>
   </Provider>,
